@@ -4,7 +4,14 @@ const PORT = 3000;
 const express = require('express');
 const server = express();
 const apiRouter = require('./api')
+const morgan = require ('morgan');
+const { client } = require('./db/index.js');
+client.connect();
+
 //Attaching a gernal purpose route 
+
+server.use(express.json());
+
 server.use((req,res,next)=> {
 	console.log("<___Body Logger START___>")
 	console.log(req.body);
